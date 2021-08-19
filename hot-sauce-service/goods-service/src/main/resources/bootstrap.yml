@@ -1,0 +1,60 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: sauce-goods
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sauce-goods?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+  profiles:
+    active: dev
+#  redis:
+#    host: r-bp1bz5kzij8dbbd2djpd.redis.rds.aliyuncs.com
+#    port: 6379
+#    password: i1QdWm8AtOjm
+#    timeout: 3000
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.234.131:8848
+        username: nacos
+        password: nacos
+        group: dev
+        file-extension: yml
+        refresh-enabled: true
+      discovery:
+        server-addr: 192.168.234.131:8848
+
+#dubbo
+dubbo:
+  scan:
+    base-packages: com.hot.sauce.goods.dubbo
+  protocol:
+    name: dubbo
+    port: -1
+  application:
+    id: ${spring.application.name}
+    name: ${spring.application.name}
+#  consumer:
+#    check: false
+
+
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath*:/com/hot/sauce/goods/mapper/xml/*Mapper.xml
+  type-aliases-package: com.hot.sauce.goods.model.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+logging:
+  level:
+    com:
+      alibaba:
+        nacos:
+          client:
+            naming: warn
