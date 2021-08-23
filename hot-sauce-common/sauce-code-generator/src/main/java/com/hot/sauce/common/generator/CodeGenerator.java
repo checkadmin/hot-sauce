@@ -10,9 +10,14 @@ import com.hot.sauce.common.generator.util.GeneratorConfig;
 public class CodeGenerator {
 
     public static void main(String[] args) {
-        String str[] = new String[]{"tb_goods"};
+        /*String str[] = new String[]{"tb_goods"};
         GeneratorConfig.getAutoGenerator("goods-service","liuYang",
                 "goods",
+                "tb_", str).execute();*/
+
+        String str[] = new String[]{"tb_user"};
+        GeneratorConfig.getAutoGenerator("sauce-user","user-service","liuYang",
+                "user",
                 "tb_", str).execute();
     }
 }

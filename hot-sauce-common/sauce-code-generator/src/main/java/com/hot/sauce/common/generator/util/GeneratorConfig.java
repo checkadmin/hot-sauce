@@ -16,7 +16,7 @@ public class GeneratorConfig {
     /**
      * 数据库-连接
      */
-    private final static String JDBC_URL = "localhost:3306/sauce-goods";
+    private final static String JDBC_URL = "localhost:3306/";
     /**
      * 数据库-用户名
      */
@@ -45,9 +45,9 @@ public class GeneratorConfig {
         return gc;
     }
 
-    private static DataSourceConfig getDataSourceConfig(){
+    private static DataSourceConfig getDataSourceConfig(String sourceName){
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://"+JDBC_URL+"?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT");
+        dsc.setUrl("jdbc:mysql://"+JDBC_URL+sourceName+"?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername(JDBC_UESR);
         dsc.setPassword(JDBC_PWD);
@@ -76,6 +76,7 @@ public class GeneratorConfig {
 
     /**
      * 代码生成类
+     * @param sourceName 数据库名称
      * @param serviceName 服务名称
      * @param author 作者
      * @param moduleName 服务简称，例如：goods-service -> goods
@@ -83,12 +84,12 @@ public class GeneratorConfig {
      * @param include 表集合
      * @return AutoGenerator
      */
-    public static AutoGenerator getAutoGenerator(String serviceName,String author,
+    public static AutoGenerator getAutoGenerator(String sourceName,String serviceName,String author,
                                           String moduleName,
                                           String tablePrefix, String... include){
         AutoGenerator mpg = new AutoGenerator();
         mpg.setGlobalConfig(getGlobalConfig(serviceName,author));
-        mpg.setDataSource(getDataSourceConfig());
+        mpg.setDataSource(getDataSourceConfig(sourceName));
         mpg.setPackageInfo(getPackageConfig(moduleName));
         mpg.setStrategy(getStrategyConfig(tablePrefix,include));
         return mpg;
