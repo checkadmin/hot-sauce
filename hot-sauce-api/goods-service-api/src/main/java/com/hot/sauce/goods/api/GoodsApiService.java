@@ -14,5 +14,11 @@ public interface GoodsApiService {
      */
     GoodsEntity getGoods(Integer goodsId);
 
+    /**
+     * 修改商品
+     * @param goodsId
+     */
+    void updateGoods(Integer goodsId);
+
 
 }

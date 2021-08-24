@@ -1,5 +1,7 @@
 package com.hot.sauce.order.model.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import lombok.Data;
@@ -19,7 +21,7 @@ import lombok.EqualsAndHashCode;
 public class OrderEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    @TableId(value = "order_id", type = IdType.AUTO)
     private Long orderId;
 
     private Long goodsId;

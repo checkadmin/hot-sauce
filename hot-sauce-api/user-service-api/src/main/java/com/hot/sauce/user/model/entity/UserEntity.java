@@ -1,7 +1,11 @@
 package com.hot.sauce.user.model.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.math.BigDecimal;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -19,7 +23,7 @@ import lombok.EqualsAndHashCode;
 public class UserEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    @TableId(value = "user_id", type = IdType.AUTO)
     private Long userId;
 
     private String name;

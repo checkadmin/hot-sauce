@@ -19,14 +19,14 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: 192.168.234.131:8848
+        server-addr: 121.41.165.120:8848
         username: nacos
         password: nacos
         group: dev
         file-extension: yml
         refresh-enabled: true
       discovery:
-        server-addr: 192.168.234.131:8848
+        server-addr: 121.41.165.120:8848
 
 #dubbo
 dubbo:

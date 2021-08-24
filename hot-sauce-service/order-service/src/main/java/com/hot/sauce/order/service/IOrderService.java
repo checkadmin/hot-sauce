@@ -13,4 +13,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IOrderService extends IService<OrderEntity> {
 
+    /**
+     * 创建订单
+     */
+    void saveOrder();
 }
