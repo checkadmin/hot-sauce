@@ -3,7 +3,7 @@ package com.hot.sauce.goods.api;
 import com.hot.sauce.goods.model.entity.GoodsEntity;
 
 /**
- * @author ： liuYang
+ * @author ： coder.Yang
  * @date ： 2021/8/23 15:16
  * @description ：商品服务api
  */

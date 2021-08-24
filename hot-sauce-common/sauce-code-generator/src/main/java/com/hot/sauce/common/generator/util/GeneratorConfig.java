@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 
 /**
- * @author ： liuYang
+ * @author ： coder.Yang
  * @date ： 2021/8/19 10:53
  * @description ： 代码生成配置类
  */

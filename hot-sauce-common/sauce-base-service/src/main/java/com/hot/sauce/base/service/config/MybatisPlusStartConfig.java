@@ -1,4 +1,4 @@
-package config;
+package com.hot.sauce.base.service.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author ： liuYang
+ * @author ： coder.Yang
  * @date ： 2021/8/19 11:38
  * @description ： 分页配置
  */

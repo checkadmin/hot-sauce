@@ -1,12 +1,12 @@
 package com.hot.sauce.order.controller;
 
 
+import com.hot.sauce.base.service.result.ResultBody;
 import com.hot.sauce.order.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  *  前端控制器
  * </p>
  *
- * @author liuYang
+ * @author coder.Yang
  * @since 2021-08-23
  */
 @RestController
@@ -25,8 +25,8 @@ public class OrderController {
     private IOrderService orderService;
 
     @GetMapping("/save")
-    public String save(){
+    public ResultBody save(){
         orderService.saveOrder();
-        return "SUCCESS";
+        return ResultBody.success();
     }
 }

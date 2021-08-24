@@ -8,7 +8,7 @@ import com.hot.sauce.goods.model.entity.GoodsEntity;
  *  服务类
  * </p>
  *
- * @author liuYang
+ * @author coder.Yang
  * @since 2021-08-19
  */
 public interface IGoodsService extends IService<GoodsEntity> {
