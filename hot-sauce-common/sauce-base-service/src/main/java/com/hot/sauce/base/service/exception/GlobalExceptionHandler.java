@@ -5,7 +5,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author ： coder.Yang
@@ -20,20 +19,19 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = BizException.class)
     @ResponseBody
-    public ResultBody bizExceptionHandler(HttpServletRequest req, BizException e){
+    public ResultBody bizExceptionHandler(BizException e){
         log.error("发生业务异常！原因是：{}",e.getErrorMsg());
         return ResultBody.error(e.getErrorCode(),e.getErrorMsg());
     }
 
     /**
      * 参数与校验异常
-     * @param req
      * @param e
      * @return
      */
     @ExceptionHandler(value =IllegalArgumentException.class)
     @ResponseBody
-    public ResultBody exceptionHandler(HttpServletRequest req, IllegalArgumentException e){
+    public ResultBody exceptionHandler(IllegalArgumentException e){
         log.error("参数校验异常！:",e);
         return ResultBody.error(ErrorCommonEnum.SERVER_ERROR.getResultCode(),e.getMessage());
     }
@@ -43,7 +41,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value =Exception.class)
     @ResponseBody
-    public ResultBody exceptionHandler(HttpServletRequest req, Exception e){
+    public ResultBody exceptionHandler(Exception e){
         log.error("未知异常！原因是:",e);
         return ResultBody.error(ErrorCommonEnum.SERVER_ERROR);
     }

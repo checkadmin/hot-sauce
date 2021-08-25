@@ -60,7 +60,17 @@
             <version>1.1.14</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.hot.sauce</groupId>
+            <artifactId>sauce-common-redis</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
+        <dependency>
+            <groupId>com.hot.sauce</groupId>
+            <artifactId>sauce-common-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>

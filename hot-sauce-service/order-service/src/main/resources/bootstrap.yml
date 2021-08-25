@@ -11,11 +11,11 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
   profiles:
     active: dev
-#  redis:
-#    host: r-bp1bz5kzij8dbbd2djpd.redis.rds.aliyuncs.com
-#    port: 6379
-#    password: i1QdWm8AtOjm
-#    timeout: 3000
+  redis:
+    host: r-bp1bz5kzij8dbbd2djpd.redis.rds.aliyuncs.com
+    port: 6379
+    password: i1QdWm8AtOjm
+    timeout: 3000
   cloud:
     nacos:
       config:

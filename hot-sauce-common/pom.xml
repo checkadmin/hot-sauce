@@ -15,6 +15,7 @@
         <module>sauce-code-generator</module>
         <module>sauce-base-service</module>
         <module>sauce-common-core</module>
+        <module>sauce-common-redis</module>
     </modules>
 
 </project>
