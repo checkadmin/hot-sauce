@@ -1,0 +1,46 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: mall-gateway
+  cloud:
+    nacos:
+      config:
+        server-addr: 121.41.165.120:8848
+        username: nacos
+        password: nacos
+        group: dev
+        file-extension: yml
+        refresh-enabled: true
+    gateway:
+      routes:
+        # 商品服务
+        - id: goods_route
+          uri: lb://sauce-goods
+          predicates:
+            - Path=/sauce-goods/**
+          filters:
+            - StripPrefix=1
+        # 订单服务
+        - id: order_route
+          uri: lb://sauce-order
+          predicates:
+            - Path=/sauce-order/**
+          filters:
+            - StripPrefix=1
+        # 用户服务
+        - id: user_route
+            uri: lb://sauce-user
+            predicates:
+              - Path=/sauce-user/**
+            filters:
+              - StripPrefix=1
+  profiles:
+    active: dev
+
+
+
+white:
+  urlList:
+    - /login/do
+    - /register
