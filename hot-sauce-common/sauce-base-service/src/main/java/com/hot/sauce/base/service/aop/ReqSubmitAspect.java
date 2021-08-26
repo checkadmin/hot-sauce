@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.hot.sauce.base.service.annotation.Idempotent;
 import com.hot.sauce.base.service.result.ResultBody;
 import com.hot.sauce.base.service.util.IpUtil;
+import com.hot.sauce.common.redis.util.RedisLock;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -19,7 +20,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
-import java.util.concurrent.TimeUnit;
+import java.util.UUID;
 
 /**
  * @author ： coder.Yang
@@ -31,7 +32,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class ReqSubmitAspect {
     @Autowired
-    private RedissonClient redissonClient;
+    private RedisLock redisLock;
 
 
     @Around("@annotation(com.hot.sauce.base.service.annotation.Idempotent)")
@@ -53,19 +54,23 @@ public class ReqSubmitAspect {
         String ipKey = String.format("%s#%s#%s", ip, path, params);
         int hashCode = Math.abs(ipKey.hashCode());
         String key = String.format("%s_%d", ip, hashCode);
-        boolean lock = redissonClient.getLock(key).tryLock(ide.lockTime(), TimeUnit.SECONDS);
+        String clientId = UUID.randomUUID().toString();
+        int lockSeconds = ide.lockTime()*1000;
+        boolean lock = redisLock.tryLock(key, clientId, lockSeconds);
         if (lock){
             Object result;
             try {
                 result = joinPoint.proceed();
             }finally {
-                redissonClient.getLock(key).unlock();
-                log.info("分布式锁释放成功，key={}",key);
+                // 解锁
+                redisLock.releaseLock(key, clientId);
+                log.info("releaseLock success, key = [{}], clientId = [{}]", key, clientId);
             }
             return result;
         }else {
-            log.info("分布式锁获取失败，key={}",key);
-            return ResultBody.error("请求不要太频繁");
+            // 获取锁失败，认为是重复提交的请求
+            log.info("tryLock fail, key = [{}]", key);
+            return ResultBody.error("重复请求，请稍后再试!");
         }
     }
 }

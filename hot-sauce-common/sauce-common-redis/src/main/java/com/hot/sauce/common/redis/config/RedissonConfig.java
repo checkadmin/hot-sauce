@@ -31,7 +31,10 @@ public class RedissonConfig {
                         "redis://192.168.100.130:7003",
                         "redis://192.168.100.130:7004",
                         "redis://192.168.100.130:7005",
-                        "redis://192.168.100.130:7006"*/).setPassword("i1QdWm8AtOjm");
+                        "redis://192.168.100.130:7006"*/)
+                .setPassword("i1QdWm8AtOjm");
+        config.setLockWatchdogTimeout(3*1000);
+
         //创建RedissonClient
         return Redisson.create(config);
     }
