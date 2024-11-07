@@ -14,3 +14,5 @@
 
 
 # 延伸阅读
+
+<a href =“ https://scan.coverity.com/projects/hot-sauce “ > <img alt = “ Coverity 扫描构建状态“ src = “ https://scan.coverity.com/projects/30934/badge.svg “ /> </a>
